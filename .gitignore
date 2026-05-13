@@ -14,10 +14,7 @@ Thumbs.db
 **/build/
 
 # Project workspaces
-Project/**/node_modules/
-Project/**/.next/
-Project/**/.nuxt/
-Project/**/.turbo/
+Project/
 
 # External reference repositories and snapshots
 everything-claude-code/
