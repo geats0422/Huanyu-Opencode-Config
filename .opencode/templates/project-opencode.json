@@ -4,44 +4,44 @@
   "small_model": "zhipuai-coding-plan/glm-5-turbo",
   "default_agent": "build",
   "plugin": [
-    "./plugins/quality-metrics.ts",
-    "./plugins/my-plugin.ts",
-    "./plugins/lsp-auto.ts",
-    "./plugins/learning-persistence.ts",
-    "./plugins/openwolf-lite.ts"
+    "./.opencode/plugins/quality-metrics.ts",
+    "./.opencode/plugins/my-plugin.ts",
+    "./.opencode/plugins/lsp-auto.ts",
+    "./.opencode/plugins/learning-persistence.ts",
+    "./.opencode/plugins/openwolf-lite.ts"
   ],
   "instructions": [
-    "AGENTS.md",
-    "ETHOS.md",
-    "rules/common.md",
-    "rules/karpathy.md",
-    "instructions/common/*.md",
-    "instructions/python/*.md",
-    "instructions/typescript/*.md",
-    "skills/search-first/SKILL.md",
-    "skills/karpathy-guidelines/SKILL.md",
-    "skills/tdd-workflow/SKILL.md",
-    "skills/verification-loop/SKILL.md",
-    "skills/security-review/SKILL.md",
-    "skills/verification-before-completion/SKILL.md",
-    "skills/code-review/SKILL.md",
-    "skills/systematic-debugging/SKILL.md",
-    "skills/context-ops/SKILL.md",
-    "skills/code-quality-audit/SKILL.md",
-    "skills/continuous-learning/SKILL.md",
-    "skills/insights/SKILL.md",
-    "skills/optimization-spec/SKILL.md",
-    "skills/e2e-testing/SKILL.md",
-    "skills/python-testing/SKILL.md",
-    "skills/python-patterns/SKILL.md",
-    "skills/database-migrations/SKILL.md",
-    "skills/postgres-patterns/SKILL.md",
-    "skills/api-design/SKILL.md",
-    "skills/backend-patterns/SKILL.md",
-    "skills/docker-patterns/SKILL.md",
-    "skills/deployment-patterns/SKILL.md",
-    "skills/frontend-patterns/SKILL.md",
-    "skills/content-hash-cache-pattern/SKILL.md"
+    ".opencode/AGENTS.md",
+    ".opencode/ETHOS.md",
+    ".opencode/rules/common.md",
+    ".opencode/rules/karpathy.md",
+    ".opencode/instructions/common/*.md",
+    ".opencode/instructions/python/*.md",
+    ".opencode/instructions/typescript/*.md",
+    ".opencode/skills/search-first/SKILL.md",
+    ".opencode/skills/karpathy-guidelines/SKILL.md",
+    ".opencode/skills/tdd-workflow/SKILL.md",
+    ".opencode/skills/verification-loop/SKILL.md",
+    ".opencode/skills/security-review/SKILL.md",
+    ".opencode/skills/verification-before-completion/SKILL.md",
+    ".opencode/skills/code-review/SKILL.md",
+    ".opencode/skills/systematic-debugging/SKILL.md",
+    ".opencode/skills/context-ops/SKILL.md",
+    ".opencode/skills/code-quality-audit/SKILL.md",
+    ".opencode/skills/continuous-learning/SKILL.md",
+    ".opencode/skills/insights/SKILL.md",
+    ".opencode/skills/optimization-spec/SKILL.md",
+    ".opencode/skills/e2e-testing/SKILL.md",
+    ".opencode/skills/python-testing/SKILL.md",
+    ".opencode/skills/python-patterns/SKILL.md",
+    ".opencode/skills/database-migrations/SKILL.md",
+    ".opencode/skills/postgres-patterns/SKILL.md",
+    ".opencode/skills/api-design/SKILL.md",
+    ".opencode/skills/backend-patterns/SKILL.md",
+    ".opencode/skills/docker-patterns/SKILL.md",
+    ".opencode/skills/deployment-patterns/SKILL.md",
+    ".opencode/skills/frontend-patterns/SKILL.md",
+    ".opencode/skills/content-hash-cache-pattern/SKILL.md"
   ],
   "agent": {
     "build": {
@@ -61,7 +61,7 @@
       "mode": "primary",
       "model": "openai/gpt-5.5-pro",
       "temperature": 0.1,
-      "prompt": "{file:agents/architect.md}",
+      "prompt": "{file:.opencode/agents/architect.md}",
       "tools": {
         "write": false,
         "edit": false,
@@ -95,7 +95,7 @@
     "planner": {
       "description": "任务规划主代理 — 读取设计文档，拆解为2-5分钟可执行的实施任务。只读分析，不修改代码。按Tab切换到本Agent进入规划模式。",
       "mode": "primary",
-      "prompt": "{file:agents/planner.md}",
+      "prompt": "{file:.opencode/agents/planner.md}",
       "tools": {
         "write": false,
         "edit": false,
@@ -120,7 +120,7 @@
     "implementer": {
       "description": "实施子代理 — 执行单个计划任务，遵循TDD流程。接收独立上下文，不继承主会话历史。模型跟随主代理。",
       "mode": "subagent",
-      "prompt": "{file:prompts/implementer.txt}",
+      "prompt": "{file:.opencode/prompts/implementer.txt}",
       "tools": {
         "read": true,
         "bash": true,
@@ -132,7 +132,7 @@
       "description": "代码审查子代理 — 审查代码质量、安全性和可维护性。只读，不修改。模型跟随主代理。",
       "mode": "subagent",
       "temperature": 0.1,
-      "prompt": "{file:prompts/reviewer.txt}",
+      "prompt": "{file:.opencode/prompts/reviewer.txt}",
       "tools": {
         "read": true,
         "bash": true,
@@ -143,7 +143,7 @@
     "debugger": {
       "description": "系统化调试子代理 — 四阶段根因分析。铁律：不找到根因不修复。",
       "mode": "subagent",
-      "prompt": "{file:prompts/debugger.txt}",
+      "prompt": "{file:.opencode/prompts/debugger.txt}",
       "tools": {
         "read": true,
         "bash": true,
@@ -154,7 +154,7 @@
     "security-auditor": {
       "description": "安全审计子代理 — OWASP级安全检查：认证、注入、XSS、CSRF、密钥管理。可读可修复。",
       "mode": "subagent",
-      "prompt": "{file:prompts/security-reviewer.txt}",
+      "prompt": "{file:.opencode/prompts/security-reviewer.txt}",
       "tools": {
         "read": true,
         "bash": true,
@@ -165,7 +165,7 @@
     "spec-reviewer": {
       "description": "规格合规子代理 — 对照设计文档检查实现是否完整。只读，快速执行。",
       "mode": "subagent",
-      "prompt": "{file:agents/spec-reviewer.md}",
+      "prompt": "{file:.opencode/agents/spec-reviewer.md}",
       "tools": {
         "read": true,
         "bash": true,
@@ -177,7 +177,7 @@
       "description": "代码质量子代理 — 六维审查（正确性/安全/可维护/性能/测试/规范）。只读。",
       "mode": "subagent",
       "temperature": 0.1,
-      "prompt": "{file:agents/quality-reviewer.md}",
+      "prompt": "{file:.opencode/agents/quality-reviewer.md}",
       "tools": {
         "read": true,
         "bash": true,
@@ -188,7 +188,7 @@
     "quality-auditor": {
       "description": "质量评估子代理 — 运行lint/build/test工具，生成0-100加权评分报告。可读+运行命令。",
       "mode": "subagent",
-      "prompt": "{file:agents/quality-auditor.md}",
+      "prompt": "{file:.opencode/agents/quality-auditor.md}",
       "tools": {
         "read": true,
         "bash": true,
@@ -199,7 +199,7 @@
     "learn-agent": {
       "description": "学习提取子代理 — 从会话中提取可复用模式，输出结构化学习条目。只读。",
       "mode": "subagent",
-      "prompt": "{file:prompts/learn-agent.txt}",
+      "prompt": "{file:.opencode/prompts/learn-agent.txt}",
       "tools": {
         "read": true,
         "bash": true,
@@ -210,7 +210,7 @@
     "insights-agent": {
       "description": "使用分析子代理 — 分析30天git历史+学习记录+配置状态，生成优化建议。",
       "mode": "subagent",
-      "prompt": "{file:agents/insights-agent.md}",
+      "prompt": "{file:.opencode/agents/insights-agent.md}",
       "tools": {
         "read": true,
         "bash": true,
@@ -221,7 +221,7 @@
     "tdd-guide": {
       "description": "TDD 专家 — 指导新功能、Bug 修复和重构遵循红绿重构循环。模型跟随主代理。",
       "mode": "subagent",
-      "prompt": "{file:agents/tdd-guide.md}",
+      "prompt": "{file:.opencode/agents/tdd-guide.md}",
       "tools": {
         "read": true,
         "bash": true,
@@ -232,7 +232,7 @@
     "build-error-resolver": {
       "description": "构建错误解决专家 — 修复 TypeScript、构建和依赖错误。模型跟随主代理。",
       "mode": "subagent",
-      "prompt": "{file:agents/build-error-resolver.md}",
+      "prompt": "{file:.opencode/agents/build-error-resolver.md}",
       "tools": {
         "read": true,
         "bash": true,
@@ -243,7 +243,7 @@
     "e2e-runner": {
       "description": "E2E 测试专家 — 设计、运行和诊断 Playwright 端到端测试。模型跟随主代理。",
       "mode": "subagent",
-      "prompt": "{file:agents/e2e-runner.md}",
+      "prompt": "{file:.opencode/agents/e2e-runner.md}",
       "tools": {
         "read": true,
         "bash": true,
@@ -254,7 +254,7 @@
     "refactor-cleaner": {
       "description": "重构清理专家 — 移除死代码、整理重复逻辑并验证无回归。模型跟随主代理。",
       "mode": "subagent",
-      "prompt": "{file:agents/refactor-cleaner.md}",
+      "prompt": "{file:.opencode/agents/refactor-cleaner.md}",
       "tools": {
         "read": true,
         "bash": true,
@@ -265,7 +265,7 @@
     "doc-updater": {
       "description": "文档更新专家 — 同步 README、API 文档、指南和代码注释。模型跟随主代理。",
       "mode": "subagent",
-      "prompt": "{file:agents/doc-updater.md}",
+      "prompt": "{file:.opencode/agents/doc-updater.md}",
       "tools": {
         "read": true,
         "bash": true,
@@ -276,7 +276,7 @@
     "python-reviewer": {
       "description": "Python 代码审查专家 — 检查 Python 风格、类型、测试和安全问题。只读，模型跟随主代理。",
       "mode": "subagent",
-      "prompt": "{file:agents/python-reviewer.md}",
+      "prompt": "{file:.opencode/agents/python-reviewer.md}",
       "tools": {
         "read": true,
         "bash": true,
@@ -287,7 +287,7 @@
     "python-build-resolver": {
       "description": "Python 构建错误解决专家 — 修复 py_compile、ruff、mypy、pytest 错误。模型跟随主代理。",
       "mode": "subagent",
-      "prompt": "{file:agents/python-build-resolver.md}",
+      "prompt": "{file:.opencode/agents/python-build-resolver.md}",
       "tools": {
         "read": true,
         "bash": true,
@@ -298,7 +298,7 @@
     "database-reviewer": {
       "description": "数据库审查专家 — 审查 Schema、迁移、索引、查询和 PostgreSQL/Supabase 风险。只读，模型跟随主代理。",
       "mode": "subagent",
-      "prompt": "{file:agents/database-reviewer.md}",
+      "prompt": "{file:.opencode/agents/database-reviewer.md}",
       "tools": {
         "read": true,
         "bash": true,
@@ -316,13 +316,13 @@
     },
     "plan": {
       "description": "Create an implementation plan from approved design doc",
-      "template": "使用 writing-plans 技能为以下需求创建实施计划。先读取最新设计文档 (Project/{项目名称}/docs/designs/)。\n\n$ARGUMENTS",
+      "template": "使用 writing-plans 技能为以下需求创建实施计划。先读取最新设计文档 (docs/designs/)。\n\n$ARGUMENTS",
       "agent": "planner",
       "subtask": true
     },
     "execute": {
       "description": "Execute a specific task from the implementation plan. Usage: /execute <task-number>",
-      "template": "使用 execute-plans 技能执行计划中的任务。\n\n任务编号: $ARGUMENTS\n\n先读取实施计划文档 (Project/{项目名称}/docs/plans/)。严格按照 TDD 流程：先写测试 → 实现 → 审查。完成后自动继续下一个任务。"
+      "template": "使用 execute-plans 技能执行计划中的任务。\n\n任务编号: $ARGUMENTS\n\n先读取实施计划文档 (docs/plans/)。严格按照 TDD 流程：先写测试 → 实现 → 审查。完成后自动继续下一个任务。"
     },
     "finish": {
       "description": "Finalize the branch: verify, format, commit, and provide delivery options",
@@ -348,13 +348,13 @@
     },
     "insights": {
       "description": "AI coach — analyze 30-day usage patterns, identify friction points, and generate optimization recommendations",
-      "template": "使用 insights 技能分析过去 30 天的使用模式，生成优化报告和配置更新建议。\n\n数据源:\n1. git log --since=\"30 days ago\" → 活动概览、热点文件、fix/revert 模式\n2. ~/.opencode/learnings/<project>/entries/ → 学习系统健康度\n3. Project/{项目名称}/docs/friction-log.md (如存在) → 手动记录的摩擦事件\n4. .opencode/ 现有配置 → 完整度诊断\n\n输出: Project/{项目名称}/docs/insights/YYYY-MM-DD-insights.md\n\n$ARGUMENTS",
+      "template": "使用 insights 技能分析过去 30 天的使用模式，生成优化报告和配置更新建议。\n\n数据源:\n1. git log --since=\"30 days ago\" → 活动概览、热点文件、fix/revert 模式\n2. ~/.opencode/learnings/<project>/entries/ → 学习系统健康度\n3. docs/friction-log.md (如存在) → 手动记录的摩擦事件\n4. .opencode/ 现有配置 → 完整度诊断\n\n输出: docs/insights/YYYY-MM-DD-insights.md\n\n$ARGUMENTS",
       "agent": "insights-agent",
       "subtask": true
     },
     "optimize": {
       "description": "Transform insights/quality report into a structured optimization spec with priority matrix, before/after metrics, and rollback plans",
-      "template": "使用 optimization-spec 技能将分析报告转化为可执行的优化规格。\n\n步骤:\n1. 读取最新的 insights 或 quality 报告\n2. 提取所有可优化项 → 按 影响/成本 优先级排序\n3. 为 Top 3 项编写完整的优化 spec（问题→方案→预期→验证）\n4. 保存到 Project/{项目名称}/docs/optimizations/YYYY-MM-DD-optimization.md\n5. 用户批准后 → 建议运行 /plan\n\n$ARGUMENTS",
+      "template": "使用 optimization-spec 技能将分析报告转化为可执行的优化规格。\n\n步骤:\n1. 读取最新的 insights 或 quality 报告\n2. 提取所有可优化项 → 按 影响/成本 优先级排序\n3. 为 Top 3 项编写完整的优化 spec（问题→方案→预期→验证）\n4. 保存到 docs/optimizations/YYYY-MM-DD-optimization.md\n5. 用户批准后 → 建议运行 /plan\n\n$ARGUMENTS",
       "agent": "planner",
       "subtask": true
     },
@@ -373,7 +373,7 @@
     },
     "quality": {
       "description": "Universal code quality audit. Auto-detects project type (frontend/backend/database/fullstack) and applies corresponding evaluation framework. Usage: /quality [--fix]",
-      "template": "使用 code-quality-audit 技能对代码库进行质量评估。先自动检测项目类型（前端/后端/数据库/全栈），然后使用对应的评估框架。\n\n范围: $ARGUMENTS\n\n流程: 检测项目类型 → 收集定量数据 → 定性分析 → 生成加权评分报告(0-100) → (可选)执行优化。报告保存到 Project/{项目名称}/docs/audits/。",
+      "template": "使用 code-quality-audit 技能对代码库进行质量评估。先自动检测项目类型（前端/后端/数据库/全栈），然后使用对应的评估框架。\n\n范围: $ARGUMENTS\n\n流程: 检测项目类型 → 收集定量数据 → 定性分析 → 生成加权评分报告(0-100) → (可选)执行优化。报告保存到 docs/audits/。",
       "agent": "quality-auditor",
       "subtask": true
     },
@@ -451,7 +451,7 @@
     },
     "checkpoint": {
       "description": "Create a checkpoint summary of current progress and verification state",
-      "template": "创建当前工作检查点。\n\n范围: $ARGUMENTS\n\n记录: 当前目标、已完成事项、修改文件、验证结果、剩余风险、下一步。必要时保存到 Project/{项目名称}/docs/checkpoints/。"
+      "template": "创建当前工作检查点。\n\n范围: $ARGUMENTS\n\n记录: 当前目标、已完成事项、修改文件、验证结果、剩余风险、下一步。必要时保存到 docs/checkpoints/。"
     },
     "setup-pm": {
       "description": "Detect and document package manager preference",
@@ -461,9 +461,9 @@
       "description": "Enforce TDD workflow for implementation",
       "template": "使用 tdd-workflow 技能以 TDD 方式实现：\n\n$ARGUMENTS"
     },
-    "create-project": {
-      "description": "Create or verify project structure in Project/ directory with full .opencode config",
-      "template": "创建或验证项目目录结构。\n\n项目名称: $ARGUMENTS\n\n执行步骤:\n\n1. 检查 Project/$ARGUMENTS 目录是否存在:\n   - 如果存在:\n     a. 检查 .opencode 目录是否存在，不存在则从根目录 .opencode 完整复制\n     b. 检查 backend 目录是否存在，不存在则创建\n     c. 检查 frontend 目录是否存在，不存在则创建\n     d. 检查 docs 目录是否存在，不存在则创建\n   - 如果不存在:\n     a. 创建 Project/$ARGUMENTS 目录\n     b. 创建 Project/$ARGUMENTS/.opencode 目录，从根目录 .opencode 完整复制所有配置文件\n     c. 创建 Project/$ARGUMENTS/backend 目录\n     d. 创建 Project/$ARGUMENTS/frontend 目录\n     e. 创建 Project/$ARGUMENTS/docs 目录\n\n2. 复制 .opencode 配置时，需要复制以下内容:\n   - opencode.json (主配置文件)\n   - AGENTS.md (Agent配置)\n   - ETHOS.md (核心原则)\n   - agents/ 目录 (所有Agent定义)\n   - instructions/ 目录 (所有指令文件)\n   - plugins/ 目录 (所有插件)\n   - prompts/ 目录 (所有提示词)\n   - rules/ 目录 (所有规则)\n   - skills/ 目录 (所有技能)\n   - state/ 目录 (状态文件)\n   - .gitignore\n\n3. 在项目目录的 opencode.json 中添加 /sync-config 命令:\n   \"sync-config\": {\n     \"description\": \"Sync project .opencode config back to root directory\",\n     \"template\": \"将项目配置同步到根目录。\\n\\n执行步骤:\\n1. 比较项目 .opencode 与根目录 .opencode 的差异\\n2. 将项目的配置文件复制到根目录\\n3. 特别关注: skills/, agents/, rules/, instructions/, prompts/ 目录\\n4. 同步完成后，提示用户检查变更\"\n   }\n\n4. 输出创建/验证结果摘要"
+    "sync-config": {
+      "description": "Sync project .opencode config back to root Huanyu Code directory",
+      "template": "将项目配置同步到根目录 Huanyu Code/.opencode。\n\n执行步骤:\n\n1. 确认当前在项目目录下（检查 .opencode 目录是否存在）\n\n2. 定义根目录路径: D:\\work\\Huanyu Code\\.opencode\n\n3. 比较并同步以下目录和文件:\n   - opencode.json → 合并 command 部分（保留根目录的 create-project 命令）\n   - AGENTS.md → 覆盖\n   - ETHOS.md → 覆盖\n   - agents/ → 同步所有 .md 文件\n   - instructions/ → 同步所有 .md 文件\n   - plugins/ → 同步所有 .ts 文件\n   - prompts/ → 同步所有 .txt 文件\n   - rules/ → 同步所有 .md 文件\n   - skills/ → 同步所有目录和文件\n   - state/ → 不同步（项目特定状态）\n   - .gitignore → 覆盖\n\n4. 同步策略:\n   - 对于文件: 使用项目的版本覆盖根目录的版本\n   - 对于目录: 合并内容，保留两边都有的文件\n   - 对于 opencode.json: 合并 command 部分，保留根目录的 create-project 命令\n\n5. 同步完成后:\n   - 显示同步的文件列表\n   - 提示用户检查变更\n   - 建议运行 git diff 查看具体差异\n\n注意: 这是一个单向同步（项目 → 根目录），用于将项目中优化的配置反哺回根目录。"
     }
   },
   "permission": {

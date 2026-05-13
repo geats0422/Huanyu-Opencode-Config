@@ -1,11 +1,21 @@
 {
   "version": 1,
-  "updatedAt": "2026-05-13T07:36:25.341Z",
+  "updatedAt": "2026-05-13T08:40:09.875Z",
   "files": {
     ".gitignore": {
       "desc": ".gitignore: # Root",
       "tokenEstimate": 109,
       "lastSeenAt": "2026-05-13T07:36:25.341Z"
+    },
+    ".opencode/opencode.json": {
+      "desc": "opencode.json: {",
+      "tokenEstimate": 5147,
+      "lastSeenAt": "2026-05-13T08:38:18.555Z"
+    },
+    ".opencode/templates/project-opencode.json": {
+      "desc": "project-opencode.json: {",
+      "tokenEstimate": 5143,
+      "lastSeenAt": "2026-05-13T08:40:09.875Z"
     }
   }
 }
