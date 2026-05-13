@@ -1,4 +1,4 @@
-# OpenCode Personal Configuration
+# Huanyu-Opencode-Config
 
 这是我的专属 OpenCode 开发配置仓库，采用“全局配置 + 多项目目录”模式。
 
