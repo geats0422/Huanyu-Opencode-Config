@@ -1,0 +1,31 @@
+# Root
+.DS_Store
+Thumbs.db
+
+# OpenCode local runtime artifacts
+.opencode/node_modules/
+.opencode/.opencode/
+.opencode/.tmp/
+
+# Tool outputs / caches
+**/.cache/
+**/coverage/
+**/dist/
+**/build/
+
+# Project workspaces
+Project/**/node_modules/
+Project/**/.next/
+Project/**/.nuxt/
+Project/**/.turbo/
+
+# External reference repositories and snapshots
+everything-claude-code/
+superpowers/
+gstack/
+opencode origin/
+notes/
+
+# Environment files
+**/.env
+**/.env.*
