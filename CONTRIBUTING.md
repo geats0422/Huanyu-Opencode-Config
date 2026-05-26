@@ -6,7 +6,31 @@ Thanks for improving `Huanyu-Opencode-Config`.
 
 - This repository stores a global OpenCode configuration under `.opencode/`.
 - Project business code should live under `Project/{项目名称}/`.
-- Do not add per-project `.opencode/` folders.
+- Each project gets its own `.opencode/` initialized from `.opencode/templates/project-opencode.json`.
+
+## Architecture
+
+### Two-Level Config
+
+```
+根目录 .opencode/          → 唯一源（agents、skills、plugins、commands 等）
+Project/{名称}/.opencode/  → 项目级镜像（从模板初始化，可独立优化）
+```
+
+### Commands 文件化
+
+命令模板存放在 `.opencode/commands/` 目录：
+
+- `create-project.md`：根目录命令，创建项目结构
+- `sync-config.md`：项目命令，将配置同步回根目录
+
+项目级 `opencode.json` 通过 `{file:commands/xxx.md}` 引用命令文件，而非内联模板。
+
+### 关键路径规范
+
+- `plugin` 路径：`./plugins/...`（不带 `.opencode/` 前缀）
+- `instructions` 路径：`AGENTS.md`、`rules/...`、`skills/...`
+- `prompt` 引用：`{file:agents/...}`、`{file:prompts/...}`
 
 ## What to contribute
 
@@ -42,4 +66,8 @@ opencode debug config --print-logs --log-level DEBUG
 - `feat:` new capability
 - `fix:` bug fix
 - `docs:` documentation updates
+- `style:` formatting-only changes
+- `refactor:` code changes without feature or bug-fix intent
+- `perf:` performance improvements
+- `test:` adding or updating tests
 - `chore:` maintenance
