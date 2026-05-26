@@ -1,4 +1,4 @@
-# 通用编码规范
+﻿# 通用编码规范
 
 适用于所有编程语言和项目的基础规范。
 
@@ -51,3 +51,10 @@
 - 使用约定式提交：`feat:`, `fix:`, `refactor:`, `docs:`, `test:`, `chore:`, `perf:`, `ci:`
 - 保持变更模块化
 - 在 PR 摘要中解释面向用户的影响
+
+## 持续学习
+
+- 当用户请求分析会话、提取经验教训或运行 `/learn` 时，必须使用 `continuous-learning` 技能。
+- 先读取 `~/.opencode/learnings/<project>/entries/` 中已有学习条目，再提取本次会话中的可复用模式。
+- 与已有条目高度相似时优先确认并提升 confidence，不要创建重复条目；新模式才创建新学习条目。
+- confidence 达到 0.7 及以上时，向用户建议升级为 rule / skill / agent prompt / command，并在用户批准后执行。

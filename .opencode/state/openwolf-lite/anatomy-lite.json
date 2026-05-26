@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-05-13T08:40:09.875Z",
+  "updatedAt": "2026-05-15T03:24:00.500Z",
   "files": {
     ".gitignore": {
       "desc": ".gitignore: # Root",
@@ -16,6 +16,21 @@
       "desc": "project-opencode.json: {",
       "tokenEstimate": 5143,
       "lastSeenAt": "2026-05-13T08:40:09.875Z"
+    },
+    "README.md": {
+      "desc": "README.md: # Huanyu-Opencode-Config",
+      "tokenEstimate": 535,
+      "lastSeenAt": "2026-05-15T03:23:29.282Z"
+    },
+    "CONTRIBUTING.md": {
+      "desc": "CONTRIBUTING.md: # Contributing",
+      "tokenEstimate": 431,
+      "lastSeenAt": "2026-05-15T03:23:42.551Z"
+    },
+    "docs/new-project-init-checklist.md": {
+      "desc": "new-project-init-checklist.md: # 新项目初始化清单（全局配置 + 项目级镜像 + Commands 文件化）",
+      "tokenEstimate": 690,
+      "lastSeenAt": "2026-05-15T03:24:00.500Z"
     }
   }
 }
