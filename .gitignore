@@ -23,6 +23,8 @@ gstack/
 opencode origin/
 notes/
 
-# Environment files
+# Environment files (keep .env.example tracked)
 **/.env
-**/.env.*
+**/.env.local
+**/.env.*.local
+!**/.env.example

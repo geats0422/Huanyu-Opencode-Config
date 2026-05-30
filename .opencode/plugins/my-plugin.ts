@@ -170,17 +170,7 @@ _[运行 /learn 来记录经验教训]_
         }
       }
 
-      // 守护 .env 文件不被写入
-      if ((input.tool === "write" || input.tool === "edit") && (output.args as any)?.filePath) {
-        const fp = (output.args as any).filePath
-        if (typeof fp === "string" && fp.includes(".env")) {
-          throw new Error(
-            "禁止写入 .env 文件。如果需要环境变量，请使用现有的环境变量管理系统。"
-          )
-        }
-      }
-
-      // 阻止修改 linter/formatter 配置文件
+      // 守护敏感配置文件不被写入（.env 文件允许创建/编辑）
       if ((input.tool === "write" || input.tool === "edit") && (output.args as any)?.filePath) {
         const fp = (output.args as any).filePath
         if (typeof fp === "string" && isConfigFile(fp)) {

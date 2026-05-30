@@ -60,7 +60,7 @@
     "architect": {
       "description": "设计和规划主代理 — 只读分析，不修改文件。负责brainstorming、方案设计、计划制定、insights分析、优化规格。按Tab切换到本Agent进入规划模式。",
       "mode": "all",
-      "model": "openai/gpt-5.5-pro",
+      "model": "openai/gpt-5",
       "temperature": 0.1,
       "prompt": "{file:agents/architect.md}",
       "tools": {
@@ -546,6 +546,14 @@
       "type": "remote",
       "url": "https://mcp.supabase.com/mcp",
       "enabled": true
+    },
+    "stitch": {
+      "type": "remote",
+      "url": "https://stitch.googleapis.com/mcp",
+      "enabled": false,
+      "headers": {
+        "X-Goog-Api-Key": "${STITCH_API_KEY}"
+      }
     }
   },
   "permission": {
