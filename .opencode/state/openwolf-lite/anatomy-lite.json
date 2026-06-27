@@ -1,21 +1,21 @@
 {
   "version": 1,
-  "updatedAt": "2026-05-15T03:24:00.500Z",
+  "updatedAt": "2026-06-27T03:33:39.228Z",
   "files": {
     ".gitignore": {
       "desc": ".gitignore: # Root",
-      "tokenEstimate": 109,
-      "lastSeenAt": "2026-05-13T07:36:25.341Z"
+      "tokenEstimate": 177,
+      "lastSeenAt": "2026-06-27T03:33:39.228Z"
     },
     ".opencode/opencode.json": {
       "desc": "opencode.json: {",
-      "tokenEstimate": 5147,
-      "lastSeenAt": "2026-05-13T08:38:18.555Z"
+      "tokenEstimate": 6028,
+      "lastSeenAt": "2026-05-30T08:43:42.485Z"
     },
     ".opencode/templates/project-opencode.json": {
       "desc": "project-opencode.json: {",
-      "tokenEstimate": 5143,
-      "lastSeenAt": "2026-05-13T08:40:09.875Z"
+      "tokenEstimate": 5518,
+      "lastSeenAt": "2026-05-30T08:39:19.977Z"
     },
     "README.md": {
       "desc": "README.md: # Huanyu-Opencode-Config",
@@ -31,6 +31,91 @@
       "desc": "new-project-init-checklist.md: # 新项目初始化清单（全局配置 + 项目级镜像 + Commands 文件化）",
       "tokenEstimate": 690,
       "lastSeenAt": "2026-05-15T03:24:00.500Z"
+    },
+    "Project/Goulong-Zhaodan/.opencode/commands/manifest.json": {
+      "desc": "manifest.json: {",
+      "tokenEstimate": 109,
+      "lastSeenAt": "2026-05-27T01:21:05.230Z"
+    },
+    "Project/Goulong-Zhaodan/AGENTS.md": {
+      "desc": "AGENTS.md: # AGENTS.md",
+      "tokenEstimate": 318,
+      "lastSeenAt": "2026-05-27T01:28:24.842Z"
+    },
+    "Project/Goulong-Zhaodan/.gitignore": {
+      "desc": ".gitignore: # Dependencies",
+      "tokenEstimate": 103,
+      "lastSeenAt": "2026-05-27T01:28:43.032Z"
+    },
+    "Project/Goulong-Zhaodan/.opencode/opencode.json": {
+      "desc": "opencode.json: {",
+      "tokenEstimate": 6474,
+      "lastSeenAt": "2026-06-11T03:50:54.268Z"
+    },
+    "Project/Goulong-Wenheng/.opencode/opencode.json": {
+      "desc": "opencode.json: {",
+      "tokenEstimate": 5707,
+      "lastSeenAt": "2026-06-02T08:01:21.691Z"
+    },
+    "Project/Goulong-Wenheng/.opencode/commands/manifest.json": {
+      "desc": "manifest.json: {",
+      "tokenEstimate": 109,
+      "lastSeenAt": "2026-05-27T01:54:53.378Z"
+    },
+    "Project/Goulong-Wenheng/AGENTS.md": {
+      "desc": "AGENTS.md: # AGENTS.md",
+      "tokenEstimate": 318,
+      "lastSeenAt": "2026-05-27T01:55:14.030Z"
+    },
+    "Project/Goulong-Wenheng/.gitignore": {
+      "desc": ".gitignore: # Dependencies",
+      "tokenEstimate": 104,
+      "lastSeenAt": "2026-05-30T08:01:48.068Z"
+    },
+    ".opencode/plugins/my-plugin.ts": {
+      "desc": "my-plugin.ts: /**",
+      "tokenEstimate": 1823,
+      "lastSeenAt": "2026-05-30T08:16:55.253Z"
+    },
+    "Project/Goulong-Zhaodan/.opencode/plugins/my-plugin.ts": {
+      "desc": "my-plugin.ts: /**",
+      "tokenEstimate": 1823,
+      "lastSeenAt": "2026-05-30T08:17:34.924Z"
+    },
+    "Project/Goulong-Wenheng/.opencode/plugins/my-plugin.ts": {
+      "desc": "my-plugin.ts: /**",
+      "tokenEstimate": 1823,
+      "lastSeenAt": "2026-05-30T08:18:02.449Z"
+    },
+    "Project/Goulong-Wenheng/.opencode/templates/project-opencode.json": {
+      "desc": "project-opencode.json: {",
+      "tokenEstimate": 5518,
+      "lastSeenAt": "2026-05-30T08:39:52.860Z"
+    },
+    "Project/Goulong-Zhaodan/.opencode/templates/project-opencode.json": {
+      "desc": "project-opencode.json: {",
+      "tokenEstimate": 5508,
+      "lastSeenAt": "2026-05-30T08:40:04.869Z"
+    },
+    "Project/Goulong/.opencode/opencode.json": {
+      "desc": "opencode.json: {",
+      "tokenEstimate": 4784,
+      "lastSeenAt": "2026-05-30T08:40:10.941Z"
+    },
+    "Project/Goulong-Hub/.opencode/AGENTS.md": {
+      "desc": "AGENTS.md: # My OpenCode Configuration",
+      "tokenEstimate": 694,
+      "lastSeenAt": "2026-06-27T03:20:45.222Z"
+    },
+    "Project/Goulong-Hub/README.md": {
+      "desc": "README.md: # 句龙·中枢 — 产品矩阵展示门户",
+      "tokenEstimate": 253,
+      "lastSeenAt": "2026-06-27T03:21:26.017Z"
+    },
+    "Project/Goulong-Hub/.gitignore": {
+      "desc": ".gitignore: node_modules/",
+      "tokenEstimate": 23,
+      "lastSeenAt": "2026-06-27T03:24:56.291Z"
     }
   }
 }

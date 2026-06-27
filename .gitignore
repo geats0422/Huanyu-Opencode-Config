@@ -22,6 +22,13 @@ superpowers/
 gstack/
 opencode origin/
 notes/
+template/
+
+# Claude Code source snapshots (do not commit third-party proprietary code)
+tools/
+
+# GitNexus generated artifacts (regenerate via `npx gitnexus analyze`)
+.claude/
 
 # Environment files (keep .env.example tracked)
 **/.env
