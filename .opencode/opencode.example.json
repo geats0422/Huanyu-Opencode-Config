@@ -42,13 +42,14 @@
     "skills/deployment-patterns/SKILL.md",
     "skills/frontend-patterns/SKILL.md",
     "skills/content-hash-cache-pattern/SKILL.md",
+    "skills/goal-tracking/SKILL.md",
+    "skills/grill-me/SKILL.md",
     "skills/github-repo-governance/SKILL.md"
   ],
   "agent": {
     "build": {
       "description": "日常开发主代理 — 全工具访问，处理编码、文件编辑和命令执行",
       "mode": "primary",
-      "model": "openai/gpt-5.5",
       "tools": {
         "write": true,
         "edit": true,
@@ -60,7 +61,6 @@
     "architect": {
       "description": "设计和规划主代理 — 只读分析，不修改文件。负责brainstorming、方案设计、计划制定、insights分析、优化规格。按Tab切换到本Agent进入规划模式。",
       "mode": "primary",
-      "model": "openai/gpt-5.5",
       "temperature": 0.1,
       "prompt": "{file:agents/architect.md}",
       "tools": {
@@ -98,15 +98,14 @@
       }
     },
     "planner": {
-      "description": "任务规划主代理 — 读取设计文档，拆解为2-5分钟可执行的实施任务。只读分析业务代码，可写计划文档。按Tab切换到本Agent进入规划模式。",
-      "mode": "primary",
+      "description": "任务规划代理 — 读取设计文档，拆解为2-5分钟可执行的实施任务。只读分析业务代码，可写计划文档。支持主代理切换与子任务调用。",
+      "mode": "all",
       "prompt": "{file:agents/planner.md}",
       "tools": {
         "write": true,
-        "edit": true,
+        "edit": false,
         "bash": true,
-        "read": true,
-        "changed-files": true
+        "read": true
       },
       "permission": {
         "bash": {
@@ -363,8 +362,8 @@
       "subtask": true
     },
     "execute": {
-      "description": "Execute a specific task from the implementation plan. Usage: /execute <task-number>",
-      "template": "使用 execute-plans 技能执行计划中的任务。\n\n任务编号: $ARGUMENTS\n\n先读取实施计划文档 (docs/plans/)。严格按照 TDD 流程：先写测试 → 实现 → 审查。完成后自动继续下一个任务。"
+      "description": "Execute implementation plan tasks with TDD + two-phase review (spec-compliance → code-quality). Auto-continues to next task. Usage: /execute <task-number>",
+      "template": "使用 execute-plans 技能执行计划中的任务。\n\n任务编号: $ARGUMENTS\n\n先读取实施计划文档 (docs/plans/)。严格按照 TDD 流程：先写测试 → 实现 → spec-compliance-review → code-quality-review。完成后自动继续下一个任务。全部完成时建议运行 /finish。"
     },
     "finish": {
       "description": "Finalize the branch: verify, format, commit, and provide delivery options",
@@ -525,6 +524,10 @@
       "description": "Create a checkpoint summary of current progress and verification state",
       "template": "创建当前工作检查点。\n\n范围: $ARGUMENTS\n\n记录: 当前目标、已完成事项、修改文件、验证结果、剩余风险、下一步。必要时保存到 docs/checkpoints/。"
     },
+    "goal": {
+      "description": "Set / view / pause / resume / clear the project's active goal. Usage: /goal <objective> | /goal | /goal pause | /goal resume | /goal clear | /goal progress <0-100> | /goal @<file> | /goal check [item]",
+      "template": "管理 .opencode/goal.md 中的当前目标。\n\n用户输入: $ARGUMENTS\n\n按以下规则路由（必须严格执行）：\n\n【1. 参数解析】\n- 空 → VIEW\n- \"pause\" → PAUSE\n- \"resume\" → RESUME\n- \"clear\" → CLEAR\n- 以 \"progress \" 开头（如 \"progress 60\"）→ PROGRESS\n- 以 \"@\" 开头（如 \"@docs/goals/migration.md\"）→ SET_FROM_FILE\n- 以 \"check \" 开头（如 \"check 步骤 1\"）→ CHECK\n- 其他任意非空文本 → SET（视为目标文本）\n\n【2. 文件路径】\n始终操作 .opencode/goal.md（项目根目录下）。如果文件不存在，先创建带 status: clear 的初始文件。\n\n【3. 格式契约】\n文件必须是 yaml frontmatter 形式：\n---\nstatus: active | paused | clear\nobjective: \"文本（≤4000 字符）\"\ncreated_at: ISO-8601\nupdated_at: ISO-8601\nprogress: 0-100\nchecklist:\n  - [ ] 待办\n  - [x] 已完成\n---\n\n【4. 各操作行为】\n\nVIEW: 读取并格式化输出（状态、目标、进度、检查清单、创建/更新时间）。\n\nSET: 把目标文本写入 objective 字段（自动用双引号包裹，内部双引号转义）；\n  - status → active\n  - created_at → 首次设置填当前时间，已存在则保留原值\n  - updated_at → 当前时间\n  - progress → 保留已有值或 0\n  - checklist → 保留已有值或 []\n  - 长度校验：objective 字段 > 4000 字符 → 拒绝并提示使用 @file 形式\n\nSET_FROM_FILE: 用 read 工具加载 @ 后面的路径文件，把文件首段（≤4000 字符）作为 objective；\n  - 其他字段同 SET\n  - 原始文件保持不动\n\nPAUSE: status → paused，updated_at → 当前时间。\n\nRESUME: status → active，updated_at → 当前时间。\n\nCLEAR: status → clear，updated_at → 当前时间；objective 保留作为历史记录。\n\nPROGRESS: 解析 \"progress \" 后面的 0-100 数字，写入 progress 字段；\n  - 非法值（非数字、<0、>100）→ 拒绝并提示\n  - progress=100 时建议将 status 改为 clear\n\nCHECK: 解析 \"check \" 后面的文本作为检查项名；\n  - 在 checklist 中查找匹配项（模糊匹配包含关系）\n  - 找到 → 切换 [ ]/[x] 状态，更新 updated_at\n  - 找不到 → 询问用户是追加新项还是放弃\n\n【5. 输出格式】\n\n中文输出，简洁：\n- VIEW: 表格或列表展示 5 个字段\n- SET/PAUSE/RESUME/CLEAR/PROGRESS/CHECK: 一行确认 + 关键字段值\n- 错误: 明确说明问题和建议\n\n【6. 注意事项】\n- 时间戳使用 ISO-8601 格式（YYYY-MM-DDTHH:MM:SSZ 或本地时区带偏移）\n- 写文件时用 write 工具整体覆盖，不要用 edit 部分修改（避免 yaml 格式错乱）\n- 修改前如有重要信息，先备份当前内容到对话中（避免覆盖丢失）\n- 如果 goal.md 中已有重要 checklist，SET 新目标时询问是否保留 checklist\n\n【7. 故障处理】\n- goal.md 存在但解析失败（yaml 错）→ 读取原始文本回显，提示用户修复或重新设置\n- .opencode/ 目录不存在 → 自动创建\n- 写入失败 → 报错并保留原文件不变"
+    },
     "setup-pm": {
       "description": "Detect and document package manager preference",
       "template": "检测项目包管理器偏好并给出使用建议。\n\n范围: $ARGUMENTS\n\n检查 lockfile、packageManager 字段、脚本习惯，输出应使用 npm/pnpm/yarn/bun 的依据。"
@@ -536,6 +539,46 @@
     "sync-config": {
       "description": "Sync project .opencode config back to root Huanyu Code directory",
       "template": "{file:commands/sync-config.md}"
+    },
+    "create-project": {
+      "description": "Create or verify project structure in Project/ directory with full .opencode config",
+      "template": "{file:commands/create-project.md}"
+    }
+  },
+  "mcp": {
+    "MiniMax": {
+      "type": "local",
+      "command": [
+        "uvx",
+        "minimax-coding-plan-mcp",
+        "-y"
+      ],
+      "environment": {
+        "MINIMAX_API_KEY": "${MINIMAX_API_KEY}",
+        "MINIMAX_API_HOST": "https://api.minimaxi.com"
+      },
+      "enabled": true
+    },
+    "stitch": {
+      "type": "remote",
+      "url": "https://stitch.googleapis.com/mcp",
+      "enabled": true,
+      "headers": {
+        "X-Goog-Api-Key": "${STITCH_API_KEY}"
+      }
+    },
+    "zai-mcp-server": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@z_ai/mcp-server"
+      ],
+      "environment": {
+        "Z_AI_API_KEY": "${Z_AI_API_KEY}",
+        "Z_AI_MODE": "ZHIPU"
+      },
+      "enabled": true
     }
   },
   "permission": {
