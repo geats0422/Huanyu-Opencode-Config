@@ -7,12 +7,25 @@ description: 当所有实施任务完成后使用。执行最终验证、代码�
 
 所有任务完成后的标准化收尾。
 
+## L2 质量保障联动（硬性触发）
+
+收尾阶段必须触发以下 L2 组件，不可跳过：
+
+| 节点 | L2 组件 | 说明 |
+|------|---------|------|
+| 最终验证 | `verification-before-completion` skill | build/test/type/lint 全部实际运行，证据先于声明 |
+| 提交前 | `security-review` skill → `security-auditor` agent | 密钥/注入/认证扫描；CRITICAL 问题修复并轮换密钥后才允许提交 |
+
 ## 流程
 
-### 1. 最终验证
+### 1. 最终验证（按 verification-before-completion skill）
+
+必须实际运行命令并确认输出，禁止假设通过：
 ```bash
 npm test              # 或项目对应的测试命令
 npm run build         # 确认构建通过
+npx tsc --noEmit      # TypeScript 项目类型检查
+npm run lint          # Lint 无警告
 ```
 - 检查 git status 确认没有遗漏的未跟踪文件
 - 检查是否有遗留的 console.log / debugger 语句
@@ -46,7 +59,10 @@ npm run build         # 确认构建通过
 | E2E | 2 | ✅ |
 ```
 
-### 4. 提交
+### 4. 提交前安全审查 → 提交
+
+**安全门（提交前必做）**：按 `security-review` skill 逐项核查；若本次改动涉及认证/支付/用户输入/密钥，委派 `security-auditor` agent 做深度审计。发现 CRITICAL 问题（密钥泄露、注入、越权）→ 修复 + 轮换泄露密钥后才允许提交。
+
 - 使用 `git status` 检查变更
 - 使用 `git diff --stat` 查看统计
 - 提交: `git commit -m "feat: 实现用户认证系统"`

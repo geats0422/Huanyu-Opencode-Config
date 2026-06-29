@@ -25,4 +25,4 @@ if (!apiKey) {
 
 ## 智能体支持
 
-- 请使用 **security-reviewer** skill 进行全面的安全审计
+- 请使用 **security-review** skill 或委派 **security-auditor** agent 进行全面的安全审计

@@ -19,7 +19,7 @@
    - 验证覆盖率 80%+
 
 3. **代码审查**
-   - 编写代码后立即使用 **code-reviewer** 智能体
+   - 编写代码后立即使用 **reviewer** 智能体（经 code-review skill）
    - 解决 CRITICAL 和 HIGH 问题
    - 尽可能修复 MEDIUM 问题
 

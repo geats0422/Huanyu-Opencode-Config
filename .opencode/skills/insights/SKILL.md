@@ -80,7 +80,7 @@ rules/ (1个)      common.md ✓         —
 
 agents/ (7个)     build ✓ planner ✓   —
                   reviewer ✓ debugger ✓
-                  security-reviewer ✓
+                  security-auditor ✓
                   implementer ✓ learn-agent ✓
                   ★ 评估: Agent 覆盖完整
 

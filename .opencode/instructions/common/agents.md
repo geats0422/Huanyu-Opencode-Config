@@ -10,8 +10,8 @@
 |--------|------|----------|
 | planner | 任务规划 | 复杂功能、重构 |
 | architect | 系统设计 | 架构决策 |
-| code-reviewer | 代码审查 | 代码编写后 |
-| security-reviewer | 安全分析 | 提交前 |
+| reviewer | 代码审查 | 代码编写后 |
+| security-auditor | 安全分析 | 提交前 |
 
 ### 子智能体
 
@@ -30,7 +30,7 @@
 
 无需用户提示：
 1. 复杂功能请求 - 使用 **planner** 智能体
-2. 代码编写/修改后 - 使用 **code-reviewer** 智能体
+2. 代码编写/修改后 - 使用 **reviewer** 智能体
 3. Bug 修复或新功能 - 使用 **tdd-guide** 智能体
 4. 架构决策 - 使用 **architect** 智能体
 5. Python 代码审查 - 使用 **python-reviewer** 智能体

@@ -218,7 +218,7 @@ const age: string = "30"
 - 需要架构更改（使用 architect）
 - 需要新功能（使用 planner）
 - 测试失败（使用 tdd-guide）
-- 发现安全问题（使用 security-reviewer）
+- 发现安全问题（使用 security-auditor）
 
 ## 快速参考命令
 
