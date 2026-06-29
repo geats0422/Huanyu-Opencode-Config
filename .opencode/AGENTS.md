@@ -193,17 +193,19 @@ AI 自动评估复杂度（需求边界/技术栈/改动范围/隐藏假设/方�
 | "我先做这一件事再说" | 在做任何事情之前先检查技能。 |
 | "这感觉很有生产力" | 无序的行动浪费了时间。技能防止这种情况。 |
 
-## Agent 编排
+## Agent 编排（双轨：skill 入口 + agent 执行）
 
-以下场景你应该主动使用子 Agent，不需要等待用户指示：
+每个领域遵循"skill 定义流程入口、agent 提供独立执行者"的双轨模式。skill 是默认入口；以下场景委派对应 agent（也可直接调用 agent 保证灵活性）：
 
-| 场景 | 启动 Agent | 原因 |
-|------|-----------|------|
-| 复杂功能、重构规划 | planner | 计划需要专门的分析和设计 |
-| 架构决策 | planner | 需要系统性思考 |
-| 刚完成一段代码 | reviewer | 需要独立视角的质量检查 |
-| 安全相关的代码 | security-reviewer | 需要专门的安全知识 |
-| Bug 调查 | debugger | 需要系统化的调试方法 |
+| 领域 | 入口 skill | 委派 Agent | 触发场景 |
+|------|-----------|-----------|---------|
+| 计划/架构 | writing-plans | `planner` / `architect` | 复杂功能、重构规划、架构决策 |
+| 代码审查 | code-review | `reviewer` / `quality-reviewer` / `spec-reviewer` / `quality-auditor` / `python-reviewer` | 刚完成代码、六维深度审查、对照设计、跑评分、Python 专项 |
+| TDD | tdd-workflow | `tdd-guide` | `/test-coverage`、复杂模块独立 TDD 上下文 |
+| 调试 | systematic-debugging | `debugger` | Bug 调查、需独立沙箱的根因分析 |
+| 安全 | security-review | `security-auditor` | 安全相关代码、OWASP 级审计 |
+| 学习 | continuous-learning | `learn-agent` | `/learn` 派发提取 |
+| Git 治理 | github-repo-governance | `git-governance-reviewer` | 分支/commit/release 审查 |
 
 ## 编码风格
 
@@ -223,4 +225,4 @@ AI 自动评估复杂度（需求边界/技术栈/改动范围/隐藏假设/方�
 - 认证和授权机制正确
 - 错误消息不泄露敏感信息
 
-如发现安全问题：STOP → 使用 security-reviewer agent → 修复高危问题 → 轮换泄露的密钥 → 审查整个代码库的同类问题。
+如发现安全问题：STOP → 使用 security-auditor agent → 修复高危问题 → 轮换泄露的密钥 → 审查整个代码库的同类问题。

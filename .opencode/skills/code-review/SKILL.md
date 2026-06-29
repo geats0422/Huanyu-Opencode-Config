@@ -73,3 +73,17 @@ description: 在代码修改完成后使用。检查代码质量、安全、可�
 ### 通过项目
 - [列出审查通过没有问题的方面]
 ```
+
+## Agent 路由（双轨：skill 入口 + agent 执行）
+
+本 skill 是代码审查的**统一入口**。主代理按上方清单审查；以下场景委派子代理（独立只读视角，也可被直接调用保证灵活性）：
+
+| 场景 | 调用 Agent | 说明 |
+|------|-----------|------|
+| 通用质量/安全/可维护审查 | `reviewer` | 默认委派，独立只读视角 |
+| 六维深度审查（正确性/安全/可维护/性能/测试/规范）| `quality-reviewer` | 需要系统性维度评估时 |
+| 跑 lint/build/test 出 0-100 评分 | `quality-auditor` | `/quality` 命令专用 |
+| Python 代码 Pythonic 专项 | `python-reviewer` | Python 项目 |
+| 对照设计文档检查实现完整性 | `spec-reviewer` | `execute-plans` 两阶段审查专用 |
+
+**纪律**：审查入口只有一个（本 skill）。不要同时触发多个审查 skill；按场景选一个 agent 委派。`spec-reviewer`（对照设计）与 `quality-reviewer`（代码质量）是 `execute-plans` 的固定两阶段，缺一不可。

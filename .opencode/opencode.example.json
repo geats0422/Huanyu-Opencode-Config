@@ -21,7 +21,6 @@
     "skills/search-first/SKILL.md",
     "skills/karpathy-guidelines/SKILL.md",
     "skills/tdd-workflow/SKILL.md",
-    "skills/verification-loop/SKILL.md",
     "skills/security-review/SKILL.md",
     "skills/verification-before-completion/SKILL.md",
     "skills/code-review/SKILL.md",
@@ -419,8 +418,8 @@
       "subtask": true
     },
     "verify": {
-      "description": "Run a comprehensive verification loop before declaring work complete",
-      "template": "使用 verification-loop 技能执行完整验证：构建、类型检查、lint、测试、安全扫描、diff 审查。\n\n范围: $ARGUMENTS",
+      "description": "Run verification gates (build/test/type/lint) before declaring work complete",
+      "template": "使用 verification-before-completion 技能执行完成前验证：构建、类型检查、lint、测试。证据先于声明，禁止未验证就声称完成。\n\n范围: $ARGUMENTS",
       "agent": "quality-auditor",
       "subtask": true
     },

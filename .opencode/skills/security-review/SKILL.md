@@ -66,3 +66,12 @@ description: 在提交包含用户输入、认证、API 端点或敏感数据的
 ### 通过的检查
 - [列出所有通过的检查项]
 ```
+
+## Agent 路由（双轨：skill 入口 + agent 执行）
+
+本 skill 是安全审查入口清单。需要独立执行者时调用 `security-auditor` 子代理（OWASP 级检查，可读可修复）：
+
+- **主代理按本清单** — 默认情况，主代理自己逐项核查
+- **委派 `security-auditor`** — 需要 OWASP 级深度审计（认证/注入/XSS/CSRF/密钥管理全面扫描并修复）
+
+发现 CRITICAL 问题（密钥泄露、未授权访问）时优先委派 `security-auditor` 修复并轮换密钥。
