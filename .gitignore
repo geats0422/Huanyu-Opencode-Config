@@ -7,6 +7,12 @@ Thumbs.db
 .opencode/.opencode/
 .opencode/.tmp/
 
+# Pi Agent local runtime artifacts
+.pi/node_modules/
+.pi/package-lock.json
+.pi/state/
+.pi-subagents/
+
 # Tool outputs / caches
 **/.cache/
 **/coverage/
@@ -35,3 +41,6 @@ tools/
 **/.env.local
 **/.env.*.local
 !**/.env.example
+
+# Pi MCP adapter config (contains inline secrets — pi-mcp-adapter reads it)
+.mcp.json

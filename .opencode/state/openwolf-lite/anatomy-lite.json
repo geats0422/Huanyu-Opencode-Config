@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-27T03:33:39.228Z",
+  "updatedAt": "2026-07-13T10:19:28.099Z",
   "files": {
     ".gitignore": {
       "desc": ".gitignore: # Root",
@@ -9,13 +9,13 @@
     },
     ".opencode/opencode.json": {
       "desc": "opencode.json: {",
-      "tokenEstimate": 6028,
-      "lastSeenAt": "2026-05-30T08:43:42.485Z"
+      "tokenEstimate": 6632,
+      "lastSeenAt": "2026-06-29T13:15:59.842Z"
     },
     ".opencode/templates/project-opencode.json": {
       "desc": "project-opencode.json: {",
-      "tokenEstimate": 5518,
-      "lastSeenAt": "2026-05-30T08:39:19.977Z"
+      "tokenEstimate": 5504,
+      "lastSeenAt": "2026-06-29T13:16:13.630Z"
     },
     "README.md": {
       "desc": "README.md: # Huanyu-Opencode-Config",
@@ -116,6 +116,101 @@
       "desc": ".gitignore: node_modules/",
       "tokenEstimate": 23,
       "lastSeenAt": "2026-06-27T03:24:56.291Z"
+    },
+    ".opencode/opencode.example.json": {
+      "desc": "opencode.example.json: {",
+      "tokenEstimate": 6582,
+      "lastSeenAt": "2026-06-29T13:16:07.542Z"
+    },
+    ".opencode/skills/code-review/SKILL.md": {
+      "desc": "SKILL.md: ---",
+      "tokenEstimate": 388,
+      "lastSeenAt": "2026-06-29T13:17:28.768Z"
+    },
+    ".opencode/skills/tdd-workflow/SKILL.md": {
+      "desc": "SKILL.md: ---",
+      "tokenEstimate": 342,
+      "lastSeenAt": "2026-06-29T13:18:07.128Z"
+    },
+    ".opencode/skills/systematic-debugging/SKILL.md": {
+      "desc": "SKILL.md: ---",
+      "tokenEstimate": 291,
+      "lastSeenAt": "2026-06-29T13:18:14.269Z"
+    },
+    ".opencode/skills/security-review/SKILL.md": {
+      "desc": "SKILL.md: ---",
+      "tokenEstimate": 336,
+      "lastSeenAt": "2026-06-29T13:18:26.833Z"
+    },
+    ".opencode/prompts/learn-agent.txt": {
+      "desc": "learn-agent.txt: 你是学习提取代理，由 continuous-learning skill（/learn 命令）调用。职责是分析会话内容，提取可复用模式并输出结构化学习条目。",
+      "tokenEstimate": 262,
+      "lastSeenAt": "2026-06-29T13:19:11.323Z"
+    },
+    ".opencode/skills/continuous-learning/SKILL.md": {
+      "desc": "SKILL.md: ---",
+      "tokenEstimate": 804,
+      "lastSeenAt": "2026-06-29T13:19:19.097Z"
+    },
+    ".opencode/AGENTS.md": {
+      "desc": "AGENTS.md: # My OpenCode Configuration",
+      "tokenEstimate": 1557,
+      "lastSeenAt": "2026-06-29T13:20:58.042Z"
+    },
+    ".opencode/agents/build-error-resolver.md": {
+      "desc": "build-error-resolver.md: ---",
+      "tokenEstimate": 845,
+      "lastSeenAt": "2026-06-29T13:29:03.846Z"
+    },
+    ".opencode/instructions/common/security.md": {
+      "desc": "security.md: # 安全指南",
+      "tokenEstimate": 93,
+      "lastSeenAt": "2026-06-29T13:29:08.116Z"
+    },
+    ".opencode/instructions/typescript/security.md": {
+      "desc": "security.md: ---",
+      "tokenEstimate": 114,
+      "lastSeenAt": "2026-06-29T13:29:14.821Z"
+    },
+    ".opencode/skills/insights/SKILL.md": {
+      "desc": "SKILL.md: ---",
+      "tokenEstimate": 1257,
+      "lastSeenAt": "2026-06-29T13:29:18.903Z"
+    },
+    ".opencode/instructions/common/agents.md": {
+      "desc": "agents.md: # 智能体编排",
+      "tokenEstimate": 272,
+      "lastSeenAt": "2026-06-29T13:29:39.209Z"
+    },
+    ".opencode/skills/execute-plans/SKILL.md": {
+      "desc": "SKILL.md: ---",
+      "tokenEstimate": 679,
+      "lastSeenAt": "2026-06-29T13:31:41.803Z"
+    },
+    ".opencode/skills/finishing-a-branch/SKILL.md": {
+      "desc": "SKILL.md: ---",
+      "tokenEstimate": 449,
+      "lastSeenAt": "2026-06-29T13:33:35.034Z"
+    },
+    ".opencode/skills/writing-plans/SKILL.md": {
+      "desc": "SKILL.md: ---",
+      "tokenEstimate": 399,
+      "lastSeenAt": "2026-06-29T13:33:40.184Z"
+    },
+    ".opencode/instructions/common/development-workflow.md": {
+      "desc": "development-workflow.md: # 开发工作流",
+      "tokenEstimate": 134,
+      "lastSeenAt": "2026-06-29T13:34:36.602Z"
+    },
+    "句龙产品使用指南.md": {
+      "desc": "句龙产品使用指南.md: # 句龙产品使用指南",
+      "tokenEstimate": 2433,
+      "lastSeenAt": "2026-07-13T10:08:40.990Z"
+    },
+    "_guide_tmp.md": {
+      "desc": "_guide_tmp.md: # 句龙产品使用指南",
+      "tokenEstimate": 2319,
+      "lastSeenAt": "2026-07-13T10:19:28.099Z"
     }
   }
 }

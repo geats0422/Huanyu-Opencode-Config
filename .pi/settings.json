@@ -1,0 +1,39 @@
+{
+  "defaultProvider": "minimax-cn",
+  "defaultModel": "MiniMax-M3",
+  "defaultThinkingLevel": "medium",
+
+  "compaction": {
+    "enabled": true,
+    "reserveTokens": 16384,
+    "keepRecentTokens": 20000
+  },
+
+  "retry": {
+    "enabled": true,
+    "maxRetries": 3,
+    "baseDelayMs": 2000
+  },
+
+  "skills": [
+    "./skills"
+  ],
+
+  "packages": [],
+
+  "warnings": {
+    "anthropicExtraUsage": true
+  },
+
+  "subagents": {
+    "_comment_model_tiering": "核心=双国内编码套餐(智谱=zai-coding-cn + MiniMax=minimax-cn)，套餐内额度内不另计费。默认分层(均可经 /subagents 或 /model 手动切换)：MiniMax-M3(主代理/planner/oracle/scout) + glm-5.2(reviewer/worker/researcher/context-builder/delegate/advisor)。glm-5-turbo 实测不可调用已弃用。有代理时 /model openai-codex/gpt-5.6-sol 白嫖主代理。",
+    "defaultModel": "zai-coding-cn/glm-5.2",
+    "defaultThinking": "medium",
+    "agentOverrides": {
+      "planner":  { "model": "minimax-cn/MiniMax-M3", "thinking": "high" },
+      "oracle":   { "model": "minimax-cn/MiniMax-M3", "thinking": "high" },
+      "reviewer": { "model": "zai-coding-cn/glm-5.2", "thinking": "high" },
+      "scout":    { "model": "minimax-cn/MiniMax-M3", "thinking": "low" }
+    }
+  }
+}
